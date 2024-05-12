@@ -19,4 +19,16 @@ interface NewsAPI {
         apiKey: String = API_KEY
     ): Response<NewsResponse>
 
+    @GET("v2/top-headlines")
+    suspend fun getHeadlines(
+        @Query("country")
+        languageCode: String="id",
+        @Query("q")
+        keyWords: String="saham",
+        @Query("page")
+        pageNumber: Int =1,
+        @Query("apiKey")
+        apiKey: String = API_KEY
+    ): Response<NewsResponse>
+
 }
