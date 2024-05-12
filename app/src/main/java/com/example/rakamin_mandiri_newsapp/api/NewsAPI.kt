@@ -22,7 +22,7 @@ interface NewsAPI {
     @GET("v2/top-headlines")
     suspend fun getHeadlines(
         @Query("country")
-        languageCode: String="id",
+        countryCode: String="id",
         @Query("q")
         keyWords: String="saham",
         @Query("page")
