@@ -11,8 +11,6 @@ interface NewsAPI {
     suspend fun getEverything(
         @Query("language")
         languageCode: String="id",
-        @Query("q")
-        keyWords: String,
         @Query("page")
         pageNumber: Int =1,
         @Query("apiKey")
@@ -23,8 +21,6 @@ interface NewsAPI {
     suspend fun getHeadlines(
         @Query("country")
         countryCode: String="id",
-        @Query("q")
-        keyWords: String="saham",
         @Query("page")
         pageNumber: Int =1,
         @Query("apiKey")

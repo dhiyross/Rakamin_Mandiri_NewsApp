@@ -5,11 +5,11 @@ import com.example.rakamin_mandiri_newsapp.db.ArticleDatabase
 import com.example.rakamin_mandiri_newsapp.models.Article
 
 class NewsRepository(val db: ArticleDatabase) {
-    suspend fun getEverything(languageCode: String, keyWords: String, pageNumber: Int)=
-        RetrofitInstance.api.getEverything(languageCode, keyWords, pageNumber)
+    suspend fun getEverything(languageCode: String, pageNumber: Int)=
+        RetrofitInstance.api.getEverything(languageCode, pageNumber)
 
-    suspend fun getHeadlines(countryCode: String, keyWords: String="saham", pageNumber: Int)=
-        RetrofitInstance.api.getHeadlines(countryCode, keyWords, pageNumber)
+    suspend fun getHeadlines(countryCode: String, pageNumber: Int)=
+        RetrofitInstance.api.getHeadlines(countryCode, pageNumber)
 
     suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
 

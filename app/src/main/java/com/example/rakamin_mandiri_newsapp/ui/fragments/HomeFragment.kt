@@ -78,7 +78,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
         retryButton.setOnClickListener{
-            newsViewModel.getEverything("id", "bank")
+            newsViewModel.getEverything("id")
         }
     }
 
@@ -126,7 +126,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val shouldPaginate =
                 isNoErrors && isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if (shouldPaginate) {
-                newsViewModel.getEverything("id", "bank")
+                newsViewModel.getEverything("id")
                 isScrolling = false
             }
 

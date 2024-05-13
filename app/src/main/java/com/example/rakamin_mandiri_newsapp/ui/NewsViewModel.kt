@@ -33,11 +33,11 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
     **/
 
     init {
-        getEverything("id", "saham+OR+bank+OR+uang")
+        getEverything("id")
     }
 
-    fun getEverything(languageCode: String, keyWord: String) = viewModelScope.launch {
-        everythingInternet(languageCode, keyWord)
+    fun getEverything(languageCode: String) = viewModelScope.launch {
+        everythingInternet(languageCode)
     }
 /**
     fun getHeadlines(countryCode: String, keyWord: String) = viewModelScope.launch {
@@ -60,7 +60,7 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
         }
         return Resource.Error(response.message())
     }
-/**
+/*INI HAPUS*/
     private fun handleHeadlinesResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
@@ -78,7 +78,7 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
             }
         }
         return Resource.Error(response.message())
-    } **/
+    }
 
     fun addToSaved(article: Article) = viewModelScope.launch {
         newsRepository.upsert(article)
@@ -103,11 +103,11 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
         }
     }
 
-    private suspend fun everythingInternet(languageCode: String, keyWord: String){
+    private suspend fun everythingInternet(languageCode: String){
         everything.postValue(Resource.Loading())
         try {
             if(internetConnection(this.getApplication())){
-                val response = newsRepository.getEverything(languageCode, keyWord, everythingSection)
+                val response = newsRepository.getEverything(languageCode, everythingSection)
                 everything.postValue(handleEverythingResponse(response))
             } else {
                 everything.postValue(Resource.Error("No Internet Connection"))
